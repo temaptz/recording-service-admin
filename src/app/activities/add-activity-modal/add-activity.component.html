@@ -1,0 +1,78 @@
+<div class="modal-header">
+
+  <h4 class="modal-title">{{ title }}</h4>
+  <button type="button"
+          class="close"
+          aria-label="Закрыть"
+          (click)="dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+</div>
+
+<div class="modal-body">
+
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label class="control-label">
+        Наименование
+        <input class="form-control"
+               type="text"
+               formControlName="name">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Описание
+        <textarea class="form-control"
+                  formControlName="description">
+      </textarea>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Продолжительность (мин.)
+        <input class="form-control"
+               type="number"
+               formControlName="duration">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Цвет фона
+        <input class="form-control"
+               type="color"
+               formControlName="bgColor">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Цвет текста
+        <input class="form-control"
+               type="color"
+               formControlName="color">
+      </label>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary"
+            [disabled]="this.form.invalid">
+      Сохранить
+    </button>
+
+    <button type="button"
+            (click)="dismiss()"
+            class="btn btn-danger">
+      Отмена
+    </button>
+
+  </form>
+
+</div>

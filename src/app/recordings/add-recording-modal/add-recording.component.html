@@ -1,0 +1,67 @@
+<div class="modal-header">
+
+  <h4 class="modal-title">{{ title }}</h4>
+  <button type="button"
+          class="close"
+          aria-label="Закрыть"
+          (click)="dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+</div>
+
+<div class="modal-body">
+
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label class="control-label">
+        Вид деятельности
+        <select class="form-control"
+                formControlName="activityId">
+          <option *ngFor="let activity of activities"
+                  [value]="activity.id">
+            {{ activity.name }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Дата и время
+        <input class="form-control"
+               type="datetime-local"
+               formControlName="date">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">
+        Дополнительная информация
+        <textarea class="form-control"
+                 formControlName="description"
+                 maxlength="1024">
+        </textarea>
+      </label>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary"
+            [disabled]="form.invalid">
+      <i class="fas fa-save"></i>
+      Сохранить
+    </button>
+
+    <button type="button"
+            (click)="dismiss()"
+            class="btn btn-danger">
+      <i class="fas fa-times"></i>
+      Отмена
+    </button>
+
+  </form>
+
+</div>

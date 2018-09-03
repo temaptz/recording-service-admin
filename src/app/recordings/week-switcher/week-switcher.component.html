@@ -1,0 +1,13 @@
+<button class="btn btn-light" (click)="goToPreviousWeek()">
+  <i class="fas fa-chevron-left"></i>
+  Назад
+</button>
+
+{{ weekStartDate | date: 'dd MMMM yyyy' }}
+ -
+{{ weekEndDate | date: 'dd MMMM yyyy' }}
+
+<button class="btn btn-light" (click)="goToNextWeek()">
+  Вперед
+  <i class="fas fa-chevron-right"></i>
+</button>

@@ -1,0 +1,34 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Телефно</th>
+      <th>E-mail</th>
+      <th>Доп. инфо</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.phone }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.description }}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <button class="btn btn-primary"
+                  (click)="editCustomer(customer)"
+                  title="Изменить">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-success"
+        (click)="addCustomer()">
+  <i class="fas fa-plus"></i>
+  Добавить
+</button>

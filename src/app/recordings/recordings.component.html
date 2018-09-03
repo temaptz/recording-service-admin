@@ -1,0 +1,89 @@
+<app-week-switcher (onSetWeek)="onSetWeek($event)"></app-week-switcher>
+
+<div class="week" #weekContainer>
+
+  <div class="timeline"
+       [style.height.px]="schedule.timelineHeightPx"
+       [style.padding-top.px]="schedule.timelineOffsetTopPx">
+    <div class="hour"
+         *ngFor="let hour of schedule.timelineHours; let i = index"
+         [style.height.px]="schedule.timelineLabelHeightPx"
+         [ngStyle]="{ 'margin-top' : (i === 0 && -schedule.timelineLabelHeightPx+'px' || 0) }">
+      {{ hour | date : 'HH:mm' }}
+      <div class="line"
+           [style.width.px]="weekContainerWidthPx">
+      </div>
+    </div>
+  </div>
+
+  <div class="week-header">
+    <div class="day"
+         *ngFor="let day of schedule.days">
+
+      <div class="name">{{ day.fullName }}</div>
+      <div class="time">
+        <span class="from">
+          {{ day.workingStartDate | date : 'HH:mm' }}
+        </span>
+        -
+        <span class="to">
+          {{ day.workingEndDate | date : 'HH:mm' }}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="week-content"
+       [style.height.px]="schedule.heightPx">
+    <div class="day"
+         *ngFor="let day of schedule.days">
+
+      <div class="content"
+           [style.margin-top.px]="day.offsetTopPx"
+           [style.height.px]="day.heightPx"
+           [ngClass]="{'around-the-clock': day.aroundTheClock}">
+
+        <div class="recording"
+             *ngFor="let recording of day.recordings"
+             [style.top.px]="recording.offsetTopPx"
+             [style.height.px]="recording.heightPx"
+             [style.color]="recording.activity.color"
+             [style.background-color]="recording.activity.bgColor"
+             [ngbPopover]="popContent"
+             [popoverTitle]="recording.activity.name"
+             triggers="click"
+             #popover="ngbPopover">
+          <ng-template #popContent>
+            <b>{{ recording.date | date : 'HH:mm' }}</b>
+            <br>
+            <span>{{ recording.activity.duration }} мин.</span>
+            <br>
+            <em>{{ recording.description }}</em>
+            <br>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button class="btn btn-primary"
+                      (click)="popover.close(); editRecording(recording)"
+                      title="Редактировать">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button class="btn btn-danger"
+                      (click)="removeRecording(recording)"
+                      title="Удалить">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </ng-template>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-primary"
+        (click)="addRecording()">
+  <i class="fas fa-plus"></i>
+  Добавить
+</button>

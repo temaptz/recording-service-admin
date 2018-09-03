@@ -1,0 +1,13 @@
+.hidden-info {
+  margin-top: 20px;
+}
+
+.hidden {
+  margin-top: 20px;
+
+  p {
+    display: inline-block;
+    border-bottom: 1px dashed;
+    cursor: pointer;
+  }
+}

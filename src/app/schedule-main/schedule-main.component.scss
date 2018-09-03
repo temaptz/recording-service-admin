@@ -1,0 +1,42 @@
+form {
+  width: 100%;
+
+  .days {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .day {
+      width: calc(14.2857141% - 10px);
+      margin: 5px;
+      min-width: 170px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+
+
+      .time-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .separator {
+          margin: 0 5px;
+        }
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+          width: auto;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

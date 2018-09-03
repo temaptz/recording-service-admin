@@ -1,0 +1,1 @@
+export { SnotifyToastCustomConfig } from './snotify';

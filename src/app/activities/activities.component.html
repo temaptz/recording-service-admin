@@ -1,0 +1,92 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Вид деятельности</th>
+      <th>Описание</th>
+      <th>Продолжительность (мин.)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities"
+        [style.background-color]="activity.bgColor"
+        [style.color]="activity.color"
+    >
+      <td>{{ activity.name }}</td>
+      <td>{{ activity.description }}</td>
+      <td>{{ activity.duration }}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <button class="btn btn-primary"
+                  (click)="editActivity(activity)"
+                  title="Изменить">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button class="btn btn-warning"
+                  (click)="toggleHideActivity(activity)"
+                  title="Сделать скрытым">
+            <i class="fas fa-eye-slash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-success"
+        (click)="addActivity()">
+  <i class="fas fa-plus"></i>
+  Добавить
+</button>
+
+<div class="hidden-info">
+  <div class="card">
+    <div class="card-body">
+      <p>Скрытые виды деятельности не будут доступны при создания новых записей. Но их скрытие не повлияет на уже существующие записи. Они по прежнему будут видны.</p>
+    </div>
+  </div>
+</div>
+
+<div class="hidden">
+  <p (click)="hiddenCollapsed = !hiddenCollapsed">
+    <span *ngIf="hiddenCollapsed">
+      Показать скрытые
+      <i class="fas fa-caret-down"></i></span>
+    <span *ngIf="!hiddenCollapsed">
+      Свернуть скрытые
+      <i class="fas fa-caret-up"></i>
+    </span>
+  </p>
+
+  <div [ngbCollapse]="hiddenCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-bordered table-hover table-sm"
+               *ngIf="activitiesHidden.length > 0">
+          <thead>
+          <tr>
+            <th>Вид деятельности</th>
+            <th>Описание</th>
+            <th>Продолжительность (мин.)</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let activity of activitiesHidden">
+            <td>{{ activity.name }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.duration }}</td>
+            <td>
+              <button class="btn btn-primary"
+                      (click)="toggleHideActivity(activity)"
+                      title="Перестать скрывать">
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
